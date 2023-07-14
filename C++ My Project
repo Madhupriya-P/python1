@@ -1,0 +1,111 @@
+#include <iostream>
+ #include <string>
+
+using namespace std;
+
+class Weather {
+private:
+    string location;
+    string date;
+    string condition;
+    int temperature;
+    int humidity;
+    int rainPossibility;
+
+public:
+    Weather(string loc, string dt, string cond, int temp, int hum, int rain) {
+        location = loc;
+        date = dt;
+        condition = cond;
+        temperature = temp;
+        humidity = hum;
+        rainPossibility = rain;
+    }
+
+    void displayWeather() {
+        cout << "Location: " << location << endl;
+        cout << "Date: " << date << endl;
+        cout << "Condition: " << condition << endl;
+        cout << "Temperature: " << temperature << "°C" << endl;
+        cout << "Humidity: " << humidity << "%" << endl;
+        cout << "Rain Possibility: " << rainPossibility << "%" << endl;
+    }
+};
+
+int main() {
+    string name, collegeName;
+    string location;
+    int choice;
+
+    cout << "Weather App" << endl;
+
+    cout << "Enter your name: ";
+    getline(cin, name);
+
+    cout << "Enter your college name: ";
+    getline(cin, collegeName);
+
+    cout << "Welcome, " << name << " from " << collegeName << "!" << endl;
+
+    while (true) {
+        cout << "\nSelect an option:" << endl;
+        cout << "1. Today's Weather" << endl;
+        cout << "2. Yesterday's Weather" << endl;
+        cout << "3. Tomorrow's Weather" << endl;
+        cout << "4. Weekly Weather Report" << endl;
+        cout << "5. Monthly Weather Report" << endl;
+        cout << "6. Exit" << endl;
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cin.ignore(); // Clear the input buffer
+
+        switch (choice) {
+            case 1:
+                location = "Today";
+                break;
+            case 2:
+                location = "Yesterday";
+                break;
+            case 3:
+                location = "Tomorrow";
+                break;
+            case 4:
+                location = "Week";
+                break;
+            case 5:
+                location = "Month";
+                break;
+            case 6:
+                cout << "Exiting the Weather App. Goodbye!";
+                return 0;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+                continue;
+        }
+
+        string condition;
+        int temperature, humidity, rainPossibility;
+
+        cout << "\nEnter the weather details for " << location << ":" << endl;
+
+        cout << "Condition: ";
+        getline(cin, condition);
+
+        cout << "Temperature (in Celsius): ";
+        cin >> temperature;
+
+        cout << "Humidity (%): ";
+        cin >> humidity;
+
+        cout << "Rain Possibility (%): ";
+        cin >> rainPossibility;
+        cin.ignore(); // Clear the input buffer
+
+        Weather weather(location, location, condition, temperature, humidity, rainPossibility);
+        cout << "\nWeather details for " << location << ":" << endl;
+        weather.displayWeather();
+    }
+
+    return 0;
+}
